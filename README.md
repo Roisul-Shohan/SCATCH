@@ -12,6 +12,7 @@ A modern e-commerce application built with Node.js, Express, and EJS. Features u
 - [Project Structure](#project-structure)
 - [Running Locally](#running-locally)
 - [API Endpoints](#api-endpoints)
+- [Deployment on Railway](#deployment-on-railway)
 
 ## ✨ Features
 
