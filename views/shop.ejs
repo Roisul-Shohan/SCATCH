@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop | SCATCH</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-gray-100 font-[Poppins]">
+
+ <header class="bg-orange-500 text-white px-10 py-4 flex justify-between items-center shadow-md">
+  <div class="text-2xl font-bold">SCATCH</div>
+
+  <div class="flex items-center gap-6">
+
+    <a href="/users/cart" class="flex items-center gap-1 hover:text-gray-200 transition">
+      <i class="ri-shopping-cart-line text-lg"></i> Cart
+    </a>
+
+    <a href="/users/profile" class="flex items-center">
+      <img src="data:image/jpeg;base64,<%= user.image.toString('base64')  %>"
+           class="w-10 h-10 rounded-full object-cover border-2 border-white hover:border-gray-200 transition">
+    </a>
+
+    <a href="/logout" class="hover:text-gray-200 transition">Logout</a>
+  </div>
+</header>
+
+  
+
+  <% if (success_msg&&success_msg.length>0) { %>
+    <div id="flash-message" class="fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-md z-50">
+      <%= success_msg %>
+    </div>
+  <% } %>
+
+  <div class="flex min-h-screen">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-orange-50 p-6 flex flex-col">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">Sort by:</h3>
+      <form action="/shop" method="GET" class="mb-8">
+        <select name="sortby" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-orange-400">
+          <option value="popular">Popular</option>
+          <option value="newest">Newest</option>
+        </select>
+      </form>
+
+      <div class="flex flex-col space-y-2 mb-6">
+        <a class="text-gray-700 hover:text-orange-600 font-medium transition" href="#">New Collection</a>
+        <a class="text-gray-700 hover:text-orange-600 font-medium transition" href="#">All Products</a>
+        <a class="text-gray-700 hover:text-orange-600 font-medium transition" href="#">Discounted Products</a>
+      </div>
+
+      <h4 class="font-semibold text-gray-800 mb-2 mt-6">Filter by:</h4>
+      <div class="flex flex-col space-y-1">
+        <a class="text-gray-700 hover:text-orange-600 font-medium transition" href="#">Availability</a>
+        <a class="text-gray-700 hover:text-orange-600 font-medium transition" href="#">Discount</a>
+      </div>
+    </aside>
+
+    <!-- Separator -->
+    <div class="w-px bg-gray-300"></div>
+
+    <!-- Products Section -->
+    <main class=" flex-1 p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 bg-gradient-to-tr from-gray-200 to-yellow-800">
+      <% products.forEach(function(product){ %>
+        <div class=" h-72 rounded-xl shadow-md hover:shadow-xl transition overflow-hidden">
+          <!-- Product Image -->
+          <div class="flex items-center justify-center h-48 bg-[<%= product.bgcolor %>]">
+            <img class="h-[10rem] object-contain" 
+                 src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" 
+                 alt="<%= product.name %>">
+          </div>
+          <!-- Product Info -->
+          <div class=" flex justify-between items-center px-4 py-4 bg-[<%= product.panelcolor %>] text-[<%= product.textcolor %>]">
+            <div>
+              <h3 class="font-semibold text-lg"><%= product.name %></h3>
+              <h4 class="text-sm">₹ <%= product.price %></h4>
+               <h4 class="text-gray-800"> <%= product.discount %>% discount</h4>
+            </div>
+            <a href="/users/addToCart/<%= product._id %>" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 text-orange-500 hover:bg-orange-100 transition">
+              <i class="ri-add-line text-lg"></i>
+            </a>
+          </div>
+        </div>
+      <% }) %>
+    </main>
+
+  </div>
+
+   <script>
+    setTimeout(() => {
+      const flash = document.getElementById('flash-message');
+      if (flash) flash.remove();
+    }, 2000); 
+  </script>
+
+</body>
+</html>
