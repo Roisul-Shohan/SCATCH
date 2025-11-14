@@ -2,8 +2,13 @@
 
 A modern e-commerce application built with Node.js, Express, and EJS. Features user authentication, product management, and shopping cart functionality.
 
+## 🌐 Live Demo
+
+Check out the live demo: [https://scatch-production-0d0a.up.railway.app/](https://scatch-production-0d0a.up.railway.app/)
+
 ## 📋 Table of Contents
 
+- [Live Demo](#live-demo)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Prerequisites](#prerequisites)
