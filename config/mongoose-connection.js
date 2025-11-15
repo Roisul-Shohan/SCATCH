@@ -1,15 +1,21 @@
 const mongoose = require('mongoose');
-const config = require('config');
 
 const dbgr = require('debug')('development:mongoose');
 
-mongoose
-  .connect(config.get('MONGODB_URI'))
-  .then(() => {
+const connectDB = async () => {
+  try {
+    const mongoURI = process.env.MONGODB_URI || process.env.DATABASE_URL;
+    if (!mongoURI) {
+      throw new Error('MongoDB URI not found in environment variables');
+    }
+    await mongoose.connect(mongoURI);
     dbgr('✅ MongoDB Connected Successfully');
-  })
-  .catch((err) => {
+  } catch (err) {
     dbgr('❌ MongoDB Connection Error:', err);
-  });
+    throw err;
+  }
+};
+
+connectDB();
 
 module.exports = mongoose.connection;
