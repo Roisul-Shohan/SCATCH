@@ -4,7 +4,7 @@ A modern e-commerce application built with Node.js, Express, and EJS. Features u
 
 ## 🌐 Live Demo
 
-Check out the live demo: [https://scatch-production-0d0a.up.railway.app/](https://scatch-production-0d0a.up.railway.app/)
+Check out the live demo: [https://scatch-lac.vercel.app/](https://scatch-lac.vercel.app/)
 
 ## 📋 Table of Contents
 
